@@ -1432,6 +1432,34 @@ void GCS_MAVLINK::handleMessage(mavlink_message_t* msg)
     }  
 #endif // AC_RALLY == ENABLED
 
+    case MAVLINK_MSG_ID_VICON_POSITION_ESTIMATE:
+    {
+    	mavlink_vicon_position_estimate_t packet;
+    	mavlink_msg_vicon_position_estimate_decode(msg, &packet);
+
+    	MC_Position.x = packet.x;
+    	MC_Position.y = packet.y;
+    	MC_Position.z = packet.z;
+
+    	MC_Rotation.from_euler(packet.roll, packet.pitch, packet.yaw);
+    	break;
+    }
+
+    case MAVLINK_MSG_ID_LOCAL_POSITION_NED:
+    {
+    	mavlink_local_position_ned_t packet;
+    	mavlink_msg_local_position_ned_decode(msg, &packet);
+    	//??  = packet.x;
+    	//??  = packet.y;
+    	//??  = packet.z;
+
+    	//??  = packet.vx;
+    	//??  = packet.vy;
+    	//??  = packet.vz;
+
+    	break;
+    }
+
 
     }     // end switch
 } // end handle mavlink

@@ -605,6 +605,8 @@ static int16_t yaw_look_at_heading_slew;
 // heading when in yaw_look_ahead_bearing
 static float yaw_look_ahead_bearing;
 
+static Vector3f MC_Position;
+static Matrix3f MC_Rotation;
 
 
 ////////////////////////////////////////////////////////////////////////////////
