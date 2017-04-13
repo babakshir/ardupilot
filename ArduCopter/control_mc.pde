@@ -7,6 +7,7 @@ static bool mc_init(bool ignore_checks)
 static void mc_run()
 {
 	static int c = 0;
+	mavlink_channel_t chan = MAVLINK_COMM_0;
 	c++;
 	if (c % 100 == 0)
 	{
