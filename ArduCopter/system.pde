@@ -162,13 +162,13 @@ static void init_ardupilot()
     // port with SERIAL0_BAUD. check_usb_mux() fixes this if need be.
     ap.usb_connected = true;
     check_usb_mux();
-
-#if CONFIG_HAL_BOARD != HAL_BOARD_APM2
+// For CX20 we need the second serial port
+//#if CONFIG_HAL_BOARD != HAL_BOARD_APM2
     // we have a 2nd serial port for telemetry on all boards except
     // APM2. We actually do have one on APM2 but it isn't necessary as
     // a MUX is used
     gcs[1].setup_uart(hal.uartC, map_baudrate(g.serial1_baud), 128, 128);
-#endif
+//#endif
 
 #if MAVLINK_COMM_NUM_BUFFERS > 2
     if (g.serial2_protocol == SERIAL2_FRSKY_DPORT || 
