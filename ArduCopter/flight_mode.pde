@@ -95,6 +95,11 @@ static bool set_mode(uint8_t mode)
             break;
 #endif
 
+#if MC_GUIDED == ENABLED
+        case MOTION_CAPTURE:
+            success = mc_init(ignore_checks);
+            break;
+#endif
         default:
             success = false;
             break;
@@ -200,6 +205,13 @@ static void update_flight_mode()
             poshold_run();
             break;
 #endif
+
+#if MC_GUIDED == ENABLED
+        case MOTION_CAPTURE:
+            mc_run();
+            break;
+#endif
+
     }
 }
 
@@ -328,6 +340,10 @@ print_flight_mode(AP_HAL::BetterStream *port, uint8_t mode)
     case POSHOLD:
         port->print_P(PSTR("POSHOLD"));
         break;
+    case MOTION_CAPTURE:
+        port->print_P(PSTR("MOTION_CAPTURE"));
+        break;
+
     default:
         port->printf_P(PSTR("Mode(%u)"), (unsigned)mode);
         break;
