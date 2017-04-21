@@ -1234,8 +1234,10 @@ static void update_GPS(void)
     bool report_gps_glitch;
     bool gps_updated = false;
 
-    gps.update();
+//    gps.update();
 
+
+    return;
     // logging and glitch protection run after every gps message
     for (uint8_t i=0; i<gps.num_sensors(); i++) {
         if (gps.last_message_time_ms(i) != last_gps_reading[i]) {
