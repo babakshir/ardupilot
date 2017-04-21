@@ -47,7 +47,7 @@ static AP_Vehicle::MultiCopter aparm;
 // INS and Baro declaration
 #if CONFIG_HAL_BOARD == HAL_BOARD_APM2
 
-AP_InertialSensor_MPU6000 ins;
+AP_InertialSensor ins;
 AP_Baro_MS5611 baro(&AP_Baro_MS5611::spi);
 
 #else
@@ -98,7 +98,7 @@ void loop()
 {
     // print message to user
     hal.console->printf_P(PSTR("this example tests compilation only"));
-    hal.scheduler->delay(5000);
+    hal.scheduler->delay(1);
 }
 
 AP_HAL_MAIN();
